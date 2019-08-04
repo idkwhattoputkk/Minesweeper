@@ -129,9 +129,15 @@ public class Buscaminas {
 
 		if(nivel == PRINCIPIANTE) {
 			casillas = new Casilla[FILAS_PRINCIPIANTE][COLUMNAS_PRINCIPIANTE];
+			cantidadMinas = CANTIDAD_MINAS_PRINCIPANTE;
 		}
 		else if (nivel==INTERMEDIO) {
 			casillas = new Casilla[FILAS_INTERMEDIO][COLUMNAS_INTERMEDIO];
+			cantidadMinas = CANTIDAD_MINAS_INTERMEDIO;
+		}
+		else if(nivel==EXPERTO) {
+			casillas = new Casilla[FILAS_EXPERTO][COLUMNAS_EXPERTO];
+			cantidadMinas = CANTIDAD_MINAS_EXPERTO;
 		}
 
 	}
