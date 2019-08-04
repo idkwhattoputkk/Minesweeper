@@ -147,8 +147,11 @@ public class Buscaminas {
 	 * Metodo que se encarga de inicializar todas las casillas que no son minas
 	 */
 	public void inicializarCasillasLibres() {
+		while(cantidadMinas!=0) {
+			
 
-		// TODO
+		}
+		
 
 	}
 
