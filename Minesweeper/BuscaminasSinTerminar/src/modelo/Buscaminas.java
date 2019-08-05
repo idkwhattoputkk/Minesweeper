@@ -202,6 +202,18 @@ public class Buscaminas {
 		        minesPlaced ++;
 		      }
 		    }
+		}else {
+			int minesPlaced = 0;
+		    Random random = new Random(); // this generates random numbers for us
+		    while(minesPlaced < cantidadMinas) {
+		      int x = random.nextInt(FILAS_EXPERTO); // a number between 0 and mWidth - 1
+		      int y = random.nextInt(COLUMNAS_EXPERTO);
+		      // make sure we don't place a mine on top of another
+		      if(casillas[y][x].darValor()!=100) {
+		        casillas[y][x].modificarValor(100) ;
+		        minesPlaced ++;
+		      }
+		    }
 		}
 		
 	}
@@ -227,7 +239,7 @@ public class Buscaminas {
 			}
 			for(int k=0;k<casillas[h].length;k++)
 			{
-			minesweeper+=(" "+casillas[h][k]+" ");
+			minesweeper+=(" "+casillas[h][k].mostrarValorCasilla()+" ");
 			}
 			minesweeper+="\n";
 			minesweeper+=" ";
