@@ -10,6 +10,7 @@
 
 package modelo;
 
+import java.util.Random;
 
 public class Buscaminas {
 
@@ -139,6 +140,9 @@ public class Buscaminas {
 			casillas = new Casilla[FILAS_EXPERTO][COLUMNAS_EXPERTO];
 			cantidadMinas = CANTIDAD_MINAS_EXPERTO;
 		}
+		inicializarCasillasLibres();
+		generarMinas();
+		
 
 	}
 
@@ -147,11 +151,12 @@ public class Buscaminas {
 	 * Metodo que se encarga de inicializar todas las casillas que no son minas
 	 */
 	public void inicializarCasillasLibres() {
-		while(cantidadMinas!=0) {
-			
-
+		for(int i=0;i<casillas.length;i++) {
+			for(int j=0;j<casillas.length;j++) {
+				Casilla c = new Casilla(50);
+				casillas[i][j]=c;
+			}
 		}
-		
 
 	}
 
@@ -173,8 +178,31 @@ public class Buscaminas {
 	 * M�todo que se encarga de generar aleatoriomente las minas
 	 */
 	public void generarMinas() {
-
-		// TODO
+		if(nivel==PRINCIPIANTE) {
+			int minesPlaced = 0;
+		    Random random = new Random(); // this generates random numbers for us
+		    while(minesPlaced < cantidadMinas) {
+		      int x = random.nextInt(FILAS_PRINCIPIANTE); // a number between 0 and mWidth - 1
+		      int y = random.nextInt(COLUMNAS_PRINCIPIANTE);
+		      // make sure we don't place a mine on top of another
+		      if(casillas[y][x].darValor()!=100) {
+		        casillas[y][x].modificarValor(100) ;
+		        minesPlaced ++;
+		      }
+		    }
+		}else if(nivel==INTERMEDIO) {
+			int minesPlaced = 0;
+		    Random random = new Random(); // this generates random numbers for us
+		    while(minesPlaced < cantidadMinas) {
+		      int x = random.nextInt(FILAS_INTERMEDIO); // a number between 0 and mWidth - 1
+		      int y = random.nextInt(COLUMNAS_INTERMEDIO);
+		      // make sure we don't place a mine on top of another
+		      if(casillas[y][x].darValor()!=100) {
+		        casillas[y][x].modificarValor(100) ;
+		        minesPlaced ++;
+		      }
+		    }
+		}
 		
 	}
 
@@ -185,43 +213,43 @@ public class Buscaminas {
 	 */
 	public String mostrarTablero() {
 
-		String soup =" ";
+		String minesweeper  =" ";
 		String num=" ";
 		for(int h=0;h<casillas.length;h++)
 		{
 			if(h<10)
 			{
-				soup+=" "+h+"|";
+				minesweeper+=" "+h+"|";
 			}
 			else
 			{
-				soup+=h+"|";
+				minesweeper+=h+"|";
 			}
 			for(int k=0;k<casillas[h].length;k++)
 			{
-			soup+=(" "+casillas[h][k]+" ");
+			minesweeper+=(" "+casillas[h][k]+" ");
 			}
-			soup+="\n";
-			soup+=" ";
+			minesweeper+="\n";
+			minesweeper+=" ";
 		}
 		num+="  ";
 		for(int i=0;i<casillas.length;i++)
 		{
 			if(i<11)
 			{
-				num+=" "+ i +" ";
+				num+=" "+i+" ";
 			}
 			else
 			{
-				num+= i +" ";
+				num+= i+" ";
 			}
 		}
 		num+="\n"+"  ";
 		for(int i=0;i<casillas.length;i++)
 		{
-			num+=" - ";
+			num+= " _ ";
 		}
-		num+="\n"+ soup;
+		num += " "+" \n"+ minesweeper;
 		return num;
 	}
 
