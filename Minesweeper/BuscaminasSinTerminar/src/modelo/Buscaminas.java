@@ -185,9 +185,44 @@ public class Buscaminas {
 	 */
 	public String mostrarTablero() {
 
-		// TODO
-
-		return null;
+		String soup =" ";
+		String num=" ";
+		for(int h=0;h<casillas.length;h++)
+		{
+			if(h<10)
+			{
+				soup+=" "+h+"|";
+			}
+			else
+			{
+				soup+=h+"|";
+			}
+			for(int k=0;k<casillas[h].length;k++)
+			{
+			soup+=(" "+casillas[h][k]+" ");
+			}
+			soup+="\n";
+			soup+=" ";
+		}
+		num+="  ";
+		for(int i=0;i<casillas.length;i++)
+		{
+			if(i<11)
+			{
+				num+=" "+ i +" ";
+			}
+			else
+			{
+				num+= i +" ";
+			}
+		}
+		num+="\n"+"  ";
+		for(int i=0;i<casillas.length;i++)
+		{
+			num+=" - ";
+		}
+		num+="\n"+ soup;
+		return num;
 	}
 
 
