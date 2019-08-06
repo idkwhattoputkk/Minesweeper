@@ -152,7 +152,7 @@ public class Buscaminas {
 	 */
 	public void inicializarCasillasLibres() {
 		for(int i=0;i<casillas.length;i++) {
-			for(int j=0;j<casillas.length;j++) {
+			for(int j=0;j<casillas[i].length;j++) {
 				Casilla c = new Casilla(50);
 				casillas[i][j]=c;
 			}
@@ -178,9 +178,10 @@ public class Buscaminas {
 	 * M�todo que se encarga de generar aleatoriomente las minas
 	 */
 	public void generarMinas() {
+		int minesPlaced = 0;
+	    Random random = new Random();
+	    
 		if(nivel==PRINCIPIANTE) {
-			int minesPlaced = 0;
-		    Random random = new Random();
 		    while(minesPlaced < cantidadMinas) {
 		      int x = random.nextInt(FILAS_PRINCIPIANTE);
 		      int y = random.nextInt(COLUMNAS_PRINCIPIANTE);
@@ -190,22 +191,18 @@ public class Buscaminas {
 		      }
 		    }
 		}else if(nivel==INTERMEDIO) {
-			int minesPlaced = 0;
-		    Random random = new Random();
 		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(FILAS_INTERMEDIO);
-		      int y = random.nextInt(COLUMNAS_INTERMEDIO);
+		      int x = random.nextInt(COLUMNAS_INTERMEDIO);
+		      int y = random.nextInt(FILAS_INTERMEDIO);
 		      if(casillas[y][x].darValor()!=100) {
 		        casillas[y][x].modificarValor(100) ;
 		        minesPlaced ++;
 		      }
 		    }
 		}else if(nivel==EXPERTO){
-			int minesPlaced = 0;
-		    Random random = new Random(); 
 		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(FILAS_EXPERTO);
-		      int y = random.nextInt(COLUMNAS_EXPERTO);
+		      int x = random.nextInt(COLUMNAS_EXPERTO);
+		      int y = random.nextInt(FILAS_EXPERTO);
 		      if(casillas[y][x].darValor()!=100) {
 		        casillas[y][x].modificarValor(100) ;
 		        minesPlaced ++;
@@ -228,11 +225,11 @@ public class Buscaminas {
 		{
 			if(h<10)
 			{
-				minesweeper+=" "+h+"|";
+				minesweeper+=" "+h+" ";
 			}
 			else
 			{
-				minesweeper+=h+"|";
+				minesweeper+=h+" ";
 			}
 			for(int k=0;k<casillas[h].length;k++)
 			{
@@ -242,22 +239,22 @@ public class Buscaminas {
 			minesweeper+=" ";
 		}
 		num+="  ";
-		for(int i=0;i<casillas.length;i++)
+		boolean flag = false;
+		for(int i=0;i<casillas.length && flag==false ;i++)
 		{
-			if(i<11)
+			for(int j=0;j<casillas[i].length;j++) {
+			if(j<11)
 			{
-				num+=" "+i+" ";
+				num+=" "+j+" ";
 			}
 			else
 			{
-				num+= i+" ";
+				num+= j+" ";
 			}
 		}
-		num+="\n"+"  ";
-		for(int i=0;i<casillas.length;i++)
-		{
-			num+= " _ ";
+			flag=true;
 		}
+		num+="\n"+"  ";
 		num += " "+" \n"+ minesweeper;
 		return num;
 	}
