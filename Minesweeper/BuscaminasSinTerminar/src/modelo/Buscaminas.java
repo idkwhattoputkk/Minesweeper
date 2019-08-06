@@ -180,11 +180,10 @@ public class Buscaminas {
 	public void generarMinas() {
 		if(nivel==PRINCIPIANTE) {
 			int minesPlaced = 0;
-		    Random random = new Random(); // this generates random numbers for us
+		    Random random = new Random();
 		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(FILAS_PRINCIPIANTE); // a number between 0 and mWidth - 1
+		      int x = random.nextInt(FILAS_PRINCIPIANTE);
 		      int y = random.nextInt(COLUMNAS_PRINCIPIANTE);
-		      // make sure we don't place a mine on top of another
 		      if(casillas[y][x].darValor()!=100) {
 		        casillas[y][x].modificarValor(100) ;
 		        minesPlaced ++;
@@ -192,23 +191,21 @@ public class Buscaminas {
 		    }
 		}else if(nivel==INTERMEDIO) {
 			int minesPlaced = 0;
-		    Random random = new Random(); // this generates random numbers for us
+		    Random random = new Random();
 		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(FILAS_INTERMEDIO); // a number between 0 and mWidth - 1
+		      int x = random.nextInt(FILAS_INTERMEDIO);
 		      int y = random.nextInt(COLUMNAS_INTERMEDIO);
-		      // make sure we don't place a mine on top of another
 		      if(casillas[y][x].darValor()!=100) {
 		        casillas[y][x].modificarValor(100) ;
 		        minesPlaced ++;
 		      }
 		    }
-		}else {
+		}else if(nivel==EXPERTO){
 			int minesPlaced = 0;
-		    Random random = new Random(); // this generates random numbers for us
+		    Random random = new Random(); 
 		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(FILAS_EXPERTO); // a number between 0 and mWidth - 1
+		      int x = random.nextInt(FILAS_EXPERTO);
 		      int y = random.nextInt(COLUMNAS_EXPERTO);
-		      // make sure we don't place a mine on top of another
 		      if(casillas[y][x].darValor()!=100) {
 		        casillas[y][x].modificarValor(100) ;
 		        minesPlaced ++;
