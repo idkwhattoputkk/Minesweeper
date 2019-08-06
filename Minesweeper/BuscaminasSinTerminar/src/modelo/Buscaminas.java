@@ -185,17 +185,19 @@ public class Buscaminas {
 		    while(minesPlaced < cantidadMinas) {
 		      int x = random.nextInt(FILAS_PRINCIPIANTE);
 		      int y = random.nextInt(COLUMNAS_PRINCIPIANTE);
-		      if(casillas[y][x].darValor()!=100) {
-		        casillas[y][x].modificarValor(100) ;
+		      Casilla ca = new Casilla(100);
+		      if(casillas[y][x]!=ca){
+		        casillas[y][x]=ca;
 		        minesPlaced ++;
-		      }
+		    }
 		    }
 		}else if(nivel==INTERMEDIO) {
 		    while(minesPlaced < cantidadMinas) {
 		      int x = random.nextInt(COLUMNAS_INTERMEDIO);
 		      int y = random.nextInt(FILAS_INTERMEDIO);
-		      if(casillas[y][x].darValor()!=100) {
-		        casillas[y][x].modificarValor(100) ;
+		      Casilla ca = new Casilla(100);
+		      if(casillas[y][x]!=ca){
+		        casillas[y][x]=ca;
 		        minesPlaced ++;
 		      }
 		    }
@@ -203,8 +205,9 @@ public class Buscaminas {
 		    while(minesPlaced < cantidadMinas) {
 		      int x = random.nextInt(COLUMNAS_EXPERTO);
 		      int y = random.nextInt(FILAS_EXPERTO);
-		      if(casillas[y][x].darValor()!=100) {
-		        casillas[y][x].modificarValor(100) ;
+		      Casilla ca = new Casilla(100);
+		      if(casillas[y][x]!=ca){
+		        casillas[y][x]=ca;
 		        minesPlaced ++;
 		      }
 		    }
@@ -311,7 +314,7 @@ public class Buscaminas {
 	 */
 	public boolean gano() {
 		// TODO
-		return false;
+		return perdio;
 	}
 
 
