@@ -168,12 +168,32 @@ public class Buscaminas {
 	 * @return int - La cantidad de minas que tiene alrededor la casilla [i][j]
 	 */
 	public int cantidadMinasAlrededor(int i, int j) {
-
-		// TODO
-
-		return 0;
+		int flag=0;
+		if(casillas[i][j].esMina()==false) {
+			if(i!=0 && j!=0 && i!=FILAS_PRINCIPIANTE-1 && j!= COLUMNAS_PRINCIPIANTE-1) {
+				if(casillas[i][j-1].esMina())
+					flag++;
+				if(casillas[i-1][j-1].esMina())
+					flag++;
+				if(casillas[i+1][j-1].esMina()) 
+					flag++;
+				if(casillas[i][j+1].esMina())
+					flag++;
+				if(casillas[i+1][j+1].esMina())
+					flag++;
+				if(casillas[i-1][j+1].esMina())
+					flag++;
+				if(casillas[i+1][j].esMina())
+					flag++;
+				if(casillas[i-1][j].esMina())
+					flag++;
+			}
+			if(flag==0)
+				flag=1;
+		}
+		return flag;
 	}
-
+	
 	/**
 	 * M�todo que se encarga de generar aleatoriomente las minas
 	 */
@@ -186,7 +206,7 @@ public class Buscaminas {
 		      int x = random.nextInt(FILAS_PRINCIPIANTE);
 		      int y = random.nextInt(COLUMNAS_PRINCIPIANTE);
 		      Casilla ca = new Casilla(100);
-		      if(casillas[y][x]!=ca){
+		      if(casillas[y][x].esMina()!=true){
 		        casillas[y][x]=ca;
 		        minesPlaced ++;
 		    }
@@ -196,7 +216,7 @@ public class Buscaminas {
 		      int x = random.nextInt(COLUMNAS_INTERMEDIO);
 		      int y = random.nextInt(FILAS_INTERMEDIO);
 		      Casilla ca = new Casilla(100);
-		      if(casillas[y][x]!=ca){
+		      if(casillas[y][x].esMina()!=true){
 		        casillas[y][x]=ca;
 		        minesPlaced ++;
 		      }
@@ -206,7 +226,7 @@ public class Buscaminas {
 		      int x = random.nextInt(COLUMNAS_EXPERTO);
 		      int y = random.nextInt(FILAS_EXPERTO);
 		      Casilla ca = new Casilla(100);
-		      if(casillas[y][x]!=ca){
+		      if(casillas[y][x].esMina()!=true){
 		        casillas[y][x]=ca;
 		        minesPlaced ++;
 		      }
@@ -236,6 +256,7 @@ public class Buscaminas {
 			}
 			for(int k=0;k<casillas[h].length;k++)
 			{
+			casillas[h][k].modificarValor(cantidadMinasAlrededor(h,k));
 			minesweeper+=(" "+casillas[h][k].mostrarValorCasilla()+" ");
 			}
 			minesweeper+="\n";
