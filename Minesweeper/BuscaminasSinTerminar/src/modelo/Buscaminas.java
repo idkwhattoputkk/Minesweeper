@@ -265,7 +265,11 @@ public class Buscaminas {
 	 */
 	public void resolver() {
 
-		// TODO
+		for(int i=0;i<casillas.length;i++) {
+			for(int j=0;j<casillas[i].length;j++) {
+				casillas[i][j].destapar();
+			}
+		}
 
 	}
 
