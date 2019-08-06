@@ -2,7 +2,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * $Id$
  * Universidad Icesi (Cali - Colombia)
- * Propuesta de solución laboratorio Unidad 5
+ * Propuesta de soluciï¿½n laboratorio Unidad 5
  * @author Camilo Barrios - camilo.barrios@correo.icesi.edu.co
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
@@ -83,7 +83,7 @@ public class Casilla {
 	
 	/**
 	 * Genera un String que representa el valor que se debe mostrar de la casilla
-	 * @return El String con la representación actual de la casilla
+	 * @return El String con la representaciï¿½n actual de la casilla
 	 */
 	public String mostrarValorCasilla(){
 		String valor = "";

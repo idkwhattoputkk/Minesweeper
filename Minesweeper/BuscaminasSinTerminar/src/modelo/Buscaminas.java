@@ -286,8 +286,18 @@ public class Buscaminas {
 	 * @return boolean - true si fue posible destaparla, false en caso contrario
 	 */
 	public boolean abrirCasilla(int i, int j) {
-		// TODO
-		return true;
+		boolean flag = false;
+		if(casillas[i][j].darValor()==100) {
+			casillas[i][j].destapar();
+			perdio = true;
+			flag= true;
+		}else if(casillas[i][j]==null) {
+			flag=false;
+		}else {
+			casillas[i][j].destapar();
+			flag=true;
+		}
+		return flag;
 	}
 
 
@@ -297,7 +307,7 @@ public class Buscaminas {
 	 */
 	public boolean gano() {
 		// TODO
-		return true;
+		return false;
 	}
 
 
