@@ -366,13 +366,13 @@ public class Buscaminas {
 	 */
 	public boolean abrirCasilla(int i, int j) {
 		boolean flag = false;
-		if(casillas[i][j].darValor()==100) {
+		if(casillas[i][j].esMina()) {
 			casillas[i][j].destapar();
 			perdio = true;
 			flag= true;
 		}else if(casillas[i][j]==null) {
 			flag=false;
-		}else {
+		}else if(!casillas[i][j].esMina()){
 			casillas[i][j].destapar();
 			flag=true;
 		}
