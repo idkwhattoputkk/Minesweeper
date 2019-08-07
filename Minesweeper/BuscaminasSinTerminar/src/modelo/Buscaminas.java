@@ -386,7 +386,7 @@ public class Buscaminas {
 	 */
 	public boolean gano() {
 		//TODO
-		return true;
+		return false;
 	}
 
 
@@ -397,9 +397,9 @@ public class Buscaminas {
 	public String darPista() {
 		String nhull="";
 		boolean stop=false;
-		for (int i=0;i<casillas.length;i++) {
-			for(int j=0;j<casillas[i].length;j++) {
-				if(!casillas[i][j].esMina() && casillas[i][j].darSeleccionada()!=true && stop==false) {
+		for (int i=0;i<casillas.length && stop==false;i++) {
+			for(int j=0;j<casillas[i].length&&stop==false;j++) {
+				if(!casillas[i][j].esMina() && casillas[i][j].darSeleccionada()!=true ) {
 					casillas[i][j].destapar();
 					nhull=" "+ casillas[i][j].darValor()+" "+"La fila es: "+i+" la columna es: "+j+" ";
 					stop=true;
