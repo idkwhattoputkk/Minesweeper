@@ -57,7 +57,7 @@ public class Buscaminas {
 	/**
 	 * Es una constante utilizada para saber la dificultad del juego, representa el nivel intermedio
 	 */
-	public static final int INTERMEDIO = 2;
+	public static final int  INTERMEDIO = 2;
 
 	/**
 	 * Es una constante utilizada para saber la dificultad del juego, representa el nivel experto
@@ -70,9 +70,9 @@ public class Buscaminas {
 	public static final int CANTIDAD_MINAS_PRINCIPANTE = 10;
 
 	/**
-	 * Es una constante utilizada para saber la cantidad de minas en nivel intermedio
+	 * Es una constante utilizada para saber la cantidad de minas en nivel 
 	 */
-	public static final int CANTIDAD_MINAS_INTERMEDIO = 40;
+	public static final int CANTIDAD_MINAS_ = 40;
 
 	/**
 	 * Es una constante utilizada para saber la cantidad de minas en nivel experto
@@ -89,7 +89,7 @@ public class Buscaminas {
 	private Casilla[][] casillas;
 
 	/**
-	 * Atributo que representa el nivel del juego <Solo puede tomar valores PRINCIPIANTE, INTERMEDIO, EXPERTO>
+	 * Atributo que representa el nivel del juego <Solo puede tomar valores PRINCIPIANTE, , EXPERTO>
 	 */
 	private int nivel;
 
@@ -134,7 +134,7 @@ public class Buscaminas {
 		}
 		else if (nivel==INTERMEDIO) {
 			casillas = new Casilla[FILAS_INTERMEDIO][COLUMNAS_INTERMEDIO];
-			cantidadMinas = CANTIDAD_MINAS_INTERMEDIO;
+			cantidadMinas = CANTIDAD_MINAS_;
 		}
 		else if(nivel==EXPERTO) {
 			casillas = new Casilla[FILAS_EXPERTO][COLUMNAS_EXPERTO];
@@ -169,29 +169,80 @@ public class Buscaminas {
 	 */
 	public int cantidadMinasAlrededor(int i, int j) {
 		int flag=0;
-		if(casillas[i][j].esMina()==false) {
-			if(i!=0 && j!=0 && i!=FILAS_PRINCIPIANTE-1 && j!= COLUMNAS_PRINCIPIANTE-1) {
-				if(casillas[i][j-1].esMina())
-					flag++;
-				if(casillas[i-1][j-1].esMina())
-					flag++;
-				if(casillas[i+1][j-1].esMina()) 
-					flag++;
-				if(casillas[i][j+1].esMina())
-					flag++;
-				if(casillas[i+1][j+1].esMina())
-					flag++;
-				if(casillas[i-1][j+1].esMina())
-					flag++;
-				if(casillas[i+1][j].esMina())
-					flag++;
-				if(casillas[i-1][j].esMina())
-					flag++;
-			}
-			if(flag==0)
+		if(nivel==PRINCIPIANTE) {
+			if(!casillas[i][j].esMina()) {
+				if(i!=0 && j!=0 && i!=FILAS_PRINCIPIANTE-1 && j!= COLUMNAS_PRINCIPIANTE-1) {
+					if(casillas[i][j-1].esMina())
+						flag++;
+					if(casillas[i-1][j-1].esMina())
+						flag++;
+					if(casillas[i+1][j-1].esMina()) 
+						flag++;
+					if(casillas[i][j+1].esMina())
+						flag++;
+					if(casillas[i+1][j+1].esMina())
+						flag++;
+					if(casillas[i-1][j+1].esMina())
+						flag++;
+					if(casillas[i+1][j].esMina())
+						flag++;
+					if(casillas[i-1][j].esMina())
+						flag++;
+					}
+				}
+			if(flag==0) {
 				flag=1;
+			}
+		}else if(nivel==INTERMEDIO) {
+			if(!casillas[i][j].esMina()) {
+				if(i!=0 && j!=0 && i!=FILAS_INTERMEDIO-1 && j!= COLUMNAS_INTERMEDIO-1) {
+					if(casillas[i][j-1].esMina())
+						flag++;
+					if(casillas[i-1][j-1].esMina())
+						flag++;
+					if(casillas[i+1][j-1].esMina()) 
+						flag++;
+					if(casillas[i][j+1].esMina())
+						flag++;
+					if(casillas[i+1][j+1].esMina())
+						flag++;
+					if(casillas[i-1][j+1].esMina())
+						flag++;
+					if(casillas[i+1][j].esMina())
+						flag++;
+					if(casillas[i-1][j].esMina())
+						flag++;
+				}
+				if(flag==0) {
+					flag=1;
+				}
 		}
-		return flag;
+		}else if (nivel == EXPERTO){
+			if(!casillas[i][j].esMina()) {
+				if(i!=0 && j!=0 && i!=FILAS_EXPERTO-1 && j!= COLUMNAS_EXPERTO-1) {
+					if(casillas[i][j-1].esMina())
+						flag++;
+					if(casillas[i-1][j-1].esMina())
+						flag++;
+					if(casillas[i+1][j-1].esMina()) 
+						flag++;
+					if(casillas[i][j+1].esMina())
+						flag++;
+					if(casillas[i+1][j+1].esMina())
+						flag++;
+					if(casillas[i-1][j+1].esMina())
+						flag++;
+					if(casillas[i+1][j].esMina())
+						flag++;
+					if(casillas[i-1][j].esMina())
+						flag++;
+				}
+				if(flag==0) {
+					flag=1;
+				}
+		}
+		}
+		return flag++;
 	}
 	
 	/**
@@ -226,7 +277,7 @@ public class Buscaminas {
 		      int x = random.nextInt(COLUMNAS_EXPERTO);
 		      int y = random.nextInt(FILAS_EXPERTO);
 		      Casilla ca = new Casilla(100);
-		      if(casillas[y][x].esMina()!=true){
+		      if(!casillas[y][x].esMina()){
 		        casillas[y][x]=ca;
 		        minesPlaced ++;
 		      }
@@ -334,8 +385,8 @@ public class Buscaminas {
 	 * @return boolean - true si gano el juego, false en caso contrario
 	 */
 	public boolean gano() {
-		// TODO
-		return perdio;
+		//TODO
+		return true;
 	}
 
 
@@ -344,9 +395,20 @@ public class Buscaminas {
 	 * @return String, Mensaje de la Casilla que marco abierta, En caso de no haber casillas posibles para dar una pista, retorna el mensaje no hay pistas para dar
 	 */
 	public String darPista() {
-
-		// TODO
-		return null;
+		String nhull="";
+		boolean stop=false;
+		for (int i=0;i<casillas.length;i++) {
+			for(int j=0;j<casillas[i].length;j++) {
+				if(!casillas[i][j].esMina() && casillas[i][j].darSeleccionada()!=true && stop==false) {
+					casillas[i][j].destapar();
+					nhull=" "+ casillas[i][j].darValor()+" "+"La fila es: "+i+" la columna es: "+j+" ";
+					stop=true;
+				}else {
+					nhull="no hay pistas para dar";
+			}
+			}
+		}
+		return nhull;
 	}
 	
 	/***
