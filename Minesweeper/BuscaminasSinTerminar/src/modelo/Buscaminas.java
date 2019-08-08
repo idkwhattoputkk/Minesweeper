@@ -385,8 +385,16 @@ public class Buscaminas {
 	 * @return boolean - true si gano el juego, false en caso contrario
 	 */
 	public boolean gano() {
-		//TODO
-		return false;
+		boolean flag=false;
+		for (int i=0;i<casillas.length;i++) {
+			for(int j=0;j<casillas[i].length;j++) {
+				if(casillas[i][j].darSeleccionada()==true && !casillas[i][j].esMina()) {
+					flag=true;
+				}else
+					flag=false;
+			}
+		}
+		return flag;
 	}
 
 
