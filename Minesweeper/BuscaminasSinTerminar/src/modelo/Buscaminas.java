@@ -142,8 +142,6 @@ public class Buscaminas {
 		}
 		inicializarCasillasLibres();
 		generarMinas();
-		
-
 	}
 
 
@@ -292,46 +290,28 @@ public class Buscaminas {
 	 * @return String - El tablero en formato String
 	 */
 	public String mostrarTablero() {
-
-		String minesweeper  =" ";
-		String num=" ";
-		for(int h=0;h<casillas.length;h++)
-		{
-			if(h<10)
-			{
-				minesweeper+=" "+h+" ";
+		String print ="";
+		for(int i=0;i<casillas[0].length;i++) {
+			if(i==0) {
+				print="   ";
 			}
+			if(i<9)
+				print+=" "+(i+1)+" ";
 			else
-			{
-				minesweeper+=h+" ";
-			}
-			for(int k=0;k<casillas[h].length;k++)
-			{
-			casillas[h][k].modificarValor(cantidadMinasAlrededor(h,k));
-			minesweeper+=(" "+casillas[h][k].mostrarValorCasilla()+" ");
-			}
-			minesweeper+="\n";
-			minesweeper+=" ";
+				print+=(i+1)+" ";
 		}
-		num+="  ";
-		boolean flag = false;
-		for(int i=0;i<casillas.length && flag==false ;i++)
-		{
-			for(int j=0;j<casillas[i].length;j++) {
-			if(j<11)
-			{
-				num+=" "+j+" ";
-			}
+		for(int i=0;i<casillas.length;i++) {
+			print+="\n";
+			if(i<9)
+				print+= " "+(i+1)+" ";
 			else
-			{
-				num+= j+" ";
+				print+=(i+1)+" ";
+			for(int j=0;j<casillas[0].length;j++) {
+				casillas[i][j].modificarValor(cantidadMinasAlrededor(i,j));
+				print+=" "+casillas[i][j].mostrarValorCasilla()+" ";
 			}
 		}
-			flag=true;
-		}
-		num+="\n"+"  ";
-		num += " "+" \n"+ minesweeper;
-		return num;
+		return print;
 	}
 
 
