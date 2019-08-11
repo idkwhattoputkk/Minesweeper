@@ -350,9 +350,7 @@ public class Buscaminas {
 			casillas[i][j].destapar();
 			perdio = true;
 			flag= true;
-		}else if(casillas[i][j]==null) {
-			flag=false;
-		}else if(!casillas[i][j].esMina()){
+		}else if(!casillas[i][j].esMina() && !casillas[i][j].darSeleccionada()){
 			casillas[i][j].destapar();
 			flag=true;
 		}
@@ -366,13 +364,17 @@ public class Buscaminas {
 	 */
 	public boolean gano() {
 		boolean flag=false;
+		int cont=0;
 		for (int i=0;i<casillas.length;i++) {
 			for(int j=0;j<casillas[i].length;j++) {
-				if(casillas[i][j].darSeleccionada()==true && !casillas[i][j].esMina()) {
-					flag=true;
-				}else
-					flag=false;
+				if(casillas[i][j].darSeleccionada() && !casillas[i][j].esMina()) {
+					cont++;
 			}
+		}
+			if(cont==(casillas.length*casillas[i].length)-cantidadMinas) {
+				flag=true;
+			}else
+				flag=false;
 		}
 		return flag;
 	}
