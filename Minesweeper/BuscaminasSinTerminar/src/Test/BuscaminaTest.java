@@ -15,9 +15,9 @@ public class BuscaminaTest {
 	public void setupScenary1() {
 		 Random r =new Random();
 		 int randomize = r.nextInt(2);
-		 if(randomize==0)
+		 if(randomize==0) {
 			 randomize=1;
-		 
+		 }
 		 buscaminas = new Buscaminas(randomize);
 		 buscaminas.inicializarCasillasLibres();
 	}
@@ -46,5 +46,13 @@ public class BuscaminaTest {
 				}
 			}
 		}
-		
+	@Test
+	public void testInicializarCasillasLibre3() {
+		setupScenary1();
+		for(int i=0;i<buscaminas.darCasillas().length;i++) {
+			for(int j=0;j<buscaminas.darCasillas()[0].length;j++) {
+				assertFalse(buscaminas.darCasillas()[i][j].darSeleccionada());
+				}
+			}
+		}
 }
