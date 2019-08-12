@@ -23,13 +23,13 @@ public class CasillaTest {
 	@Test
 	public void esMinaTest() {
 		setupScenery1();
-		assertTrue(!casillas.esMina());
+		assertFalse(casillas.esMina());
 	}
 
 	@Test
 	public void esMinaTest2() {
 		setupScenery2();
-		assertTrue(casillas.esMina());
+		assertFalse(!casillas.esMina());
 	}
 
 	@Test
