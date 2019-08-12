@@ -72,7 +72,7 @@ public class Buscaminas {
 	/**
 	 * Es una constante utilizada para saber la cantidad de minas en nivel 
 	 */
-	public static final int CANTIDAD_MINAS_ = 40;
+	public static final int CANTIDAD_MINAS_INTERMEDIO= 40;
 
 	/**
 	 * Es una constante utilizada para saber la cantidad de minas en nivel experto
@@ -134,7 +134,7 @@ public class Buscaminas {
 		}
 		else if (nivel==INTERMEDIO) {
 			casillas = new Casilla[FILAS_INTERMEDIO][COLUMNAS_INTERMEDIO];
-			cantidadMinas = CANTIDAD_MINAS_;
+			cantidadMinas = CANTIDAD_MINAS_INTERMEDIO;
 		}
 		else if(nivel==EXPERTO) {
 			casillas = new Casilla[FILAS_EXPERTO][COLUMNAS_EXPERTO];

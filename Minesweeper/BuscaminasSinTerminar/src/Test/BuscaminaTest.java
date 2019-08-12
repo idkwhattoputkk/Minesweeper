@@ -2,6 +2,8 @@ package Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 
 import modelo.Buscaminas;
@@ -11,14 +13,38 @@ public class BuscaminaTest {
 	private Buscaminas buscaminas;
 	
 	public void setupScenary1() {
-		Buscaminas buscaminas = new Buscaminas(1);
-		
+		 Random r =new Random();
+		 int randomize = r.nextInt(2);
+		 if(randomize==0)
+			 randomize=1;
+		 
+		 buscaminas = new Buscaminas(randomize);
+		 buscaminas.inicializarCasillasLibres();
 	}
 	public void setupScenary2() {
-		Buscaminas buscaminas = new Buscaminas(2);
+		Random r =new Random();
+		 int randomize = r.nextInt(3);
+		 if(randomize>0) {
+		 buscaminas = new Buscaminas(randomize);
+		 }
 	}
-	public void setupScenary3() {
-		Buscaminas buscaminas = new Buscaminas(3);
+	@Test
+	public void testInicializarCasillasLibre1() {
+		setupScenary1();
+		for(int i=0;i<buscaminas.darCasillas().length;i++) {
+			for(int j=0;j<buscaminas.darCasillas()[i].length;j++) {
+				assertTrue(!buscaminas.darCasillas()[i][j].esMina());
+			}
+		}
 	}
-
+	@Test
+	public void testInicializarCasillasLibre2() {
+		setupScenary1();
+		for(int i=0;i<buscaminas.darCasillas().length;i++) {
+			for(int j=0;j<buscaminas.darCasillas()[0].length;j++) {
+				assertEquals(buscaminas.darCasillas()[i][j].mostrarValorCasilla(), "-");
+				}
+			}
+		}
+		
 }
