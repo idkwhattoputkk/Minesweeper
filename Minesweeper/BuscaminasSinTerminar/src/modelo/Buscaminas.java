@@ -111,10 +111,14 @@ public class Buscaminas {
 	 * Constructo de la clase Buscaminas
 	 * @param nivel - el nivel seleccionado por el usuario
 	 */
-	public Buscaminas(int nivel) {
-		this.nivel = nivel;
-		perdio = false;
-		inicializarPartida();
+	public Buscaminas(int nivel) throws NivelNoExtisteException{
+		if(nivel<1 || nivel>3) {
+			throw new NivelNoExtisteException("digite un nivel correcto");
+		}else {
+			perdio = false;
+			this.nivel=nivel;
+			inicializarPartida();
+		}
 
 	}
 

@@ -3,12 +3,60 @@ package Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import modelo.Casilla;
 
-class CasillaTest {
+public class CasillaTest {
+	Casilla casillas;
+	// Setup sceneries
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void setupScenery1() {
+		casillas = new Casilla(50);
 	}
 
+	public void setupScenery2() {
+		casillas = new Casilla(100);
+	}
+
+	
+	//Testing cases
+	
+	@Test
+	public void esMinaTest() {
+		setupScenery1();
+		assertTrue(!casillas.esMina());
+	}
+
+	@Test
+	public void esMinaTest2() {
+		setupScenery2();
+		assertTrue(casillas.esMina());
+	}
+
+	@Test
+	public void mostrarValorCasillasTest() {
+		setupScenery2();
+		assertEquals(casillas.mostrarValorCasilla(), "-");
+
+	}
+	@Test
+	public void mostrarValorCasillasTest2() {
+		setupScenery2();
+		casillas.destapar();
+		assertEquals(casillas.mostrarValorCasilla(), "*");
+
+	}
+
+	@Test
+	public void destaparTest() {
+		setupScenery1();
+		assertFalse(casillas.darSeleccionada());
+	}
+
+	@Test
+	public void destaparTest2() {
+		setupScenery2();
+		casillas.destapar();
+		assertTrue(casillas.darSeleccionada());
+
+	}
 }

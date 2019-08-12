@@ -12,6 +12,7 @@ package interfaz;
 
 import java.util.Scanner;
 import modelo.Buscaminas;
+import modelo.NivelNoExtisteException;
 
 public class Menu {
 	
@@ -39,10 +40,14 @@ public class Menu {
 	 * Se encarga de inicializar los atributos
 	 */
 	public Menu(){
-		lector = new Scanner(System.in);
-		mostrarBienvenida();
-		int dificultad = seleccionarDificultad();
-		juego = new Buscaminas(dificultad);
+		try {
+			lector = new Scanner(System.in);
+			mostrarBienvenida();
+			int dificultad = seleccionarDificultad();
+			juego = new Buscaminas(dificultad);
+		} catch (NivelNoExtisteException e) {
+			System.out.println(e.getMessage());
+		}
 		manejoJuego();
 	}
 
@@ -196,9 +201,8 @@ public class Menu {
 			
 			seleccion = lector.nextInt();
 			lector.nextLine();
-
-			if(seleccion<1 || seleccion>3){
-				System.out.println("Por favor ingrese un valor correcto");
+			if(seleccion<0 || seleccion<3) {
+				System.out.println("Digite una opcion correcta");
 			}
 		}
 
