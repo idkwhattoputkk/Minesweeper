@@ -2,7 +2,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * $Id$
  * Universidad Icesi (Cali - Colombia)
- * Propuesta de solución laboratorio Unidad 5
+ * Propuesta de soluciï¿½n laboratorio Unidad 5
  * @author Camilo Barrios - camilo.barrios@correo.icesi.edu.co
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
@@ -102,7 +102,7 @@ public class Menu {
 				break;
 
 			default:
-				System.out.println("Por favor digite una opción valida");
+				System.out.println("Por favor digite una opciï¿½n valida");
 				break;
 			}
 
@@ -124,12 +124,12 @@ public class Menu {
 	public boolean abrirCasilla() {
 
 		boolean abrir = false;
-		System.out.println("Por favor digite el número de la fila que desea abrir");
+		System.out.println("Por favor digite el nï¿½mero de la fila que desea abrir");
 		int i = lector.nextInt();
 		i--;
 		lector.nextLine();		
 
-		System.out.println("Por favor digite el número de la columna que desea abrir");
+		System.out.println("Por favor digite el nï¿½mero de la columna que desea abrir");
 		int j = lector.nextInt();
 		j--;
 		lector.nextLine();		
@@ -145,14 +145,14 @@ public class Menu {
 
 
 	/**
-	 * Método que se encarga mostrar el menu de un juego al usuario
+	 * Mï¿½todo que se encarga mostrar el menu de un juego al usuario
 	 * @return int - la seleccion del usuario
 	 */
 	public int menuJuego(){
 		System.out.println("Que deseas hacer ?");
 		System.out.println("1. Abrir una casilla ");
 		System.out.println("2. Dar pista ");
-		System.out.println("3. Ver la solución del Buscaminas ");
+		System.out.println("3. Ver la soluciï¿½n del Buscaminas ");
 		System.out.println("4. Salir ");
 
 		int valor = lector.nextInt();
@@ -228,7 +228,7 @@ public class Menu {
 
 
 	/**
-	 * Este método permite mostrar un banner de separacion en el Menu. <br>
+	 * Este mï¿½todo permite mostrar un banner de separacion en el Menu. <br>
 	 */
 	public String mostrarBannerSeparacion() {
 		StringBuilder all = new StringBuilder();
@@ -266,7 +266,7 @@ public class Menu {
 	}
 
 	/**
-	 * Este método permite concatenar los caracteres para el banner. <br>
+	 * Este mï¿½todo permite concatenar los caracteres para el banner. <br>
 	 */
 	public void appendChars(StringBuilder sb, char c, int count) {
 		for (int i = 0; i < count; i++) {

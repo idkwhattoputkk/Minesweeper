@@ -166,122 +166,46 @@ public class Buscaminas {
 	 * @return int - La cantidad de minas que tiene alrededor la casilla [i][j]
 	 */
 	public int cantidadMinasAlrededor(int i, int j) {
-		int flag=0;
-		if(nivel==PRINCIPIANTE) {
-			if(!casillas[i][j].esMina()) {
-				if(i!=0 && j!=0 && i!=FILAS_PRINCIPIANTE-1 && j!= COLUMNAS_PRINCIPIANTE-1) {
-					if(casillas[i][j-1].esMina())
-						flag++;
-					if(casillas[i-1][j-1].esMina())
-						flag++;
-					if(casillas[i+1][j-1].esMina()) 
-						flag++;
-					if(casillas[i][j+1].esMina())
-						flag++;
-					if(casillas[i+1][j+1].esMina())
-						flag++;
-					if(casillas[i-1][j+1].esMina())
-						flag++;
-					if(casillas[i+1][j].esMina())
-						flag++;
-					if(casillas[i-1][j].esMina())
-						flag++;
-					}
-				}
-			if(flag==0) {
-				flag=1;
-			}
-		}else if(nivel==INTERMEDIO) {
-			if(!casillas[i][j].esMina()) {
-				if(i!=0 && j!=0 && i!=FILAS_INTERMEDIO-1 && j!= COLUMNAS_INTERMEDIO-1) {
-					if(casillas[i][j-1].esMina())
-						flag++;
-					if(casillas[i-1][j-1].esMina())
-						flag++;
-					if(casillas[i+1][j-1].esMina()) 
-						flag++;
-					if(casillas[i][j+1].esMina())
-						flag++;
-					if(casillas[i+1][j+1].esMina())
-						flag++;
-					if(casillas[i-1][j+1].esMina())
-						flag++;
-					if(casillas[i+1][j].esMina())
-						flag++;
-					if(casillas[i-1][j].esMina())
-						flag++;
-				}
-				if(flag==0) {
-					flag=1;
-				}
-		}
-		}else if (nivel == EXPERTO){
-			if(!casillas[i][j].esMina()) {
-				if(i!=0 && j!=0 && i!=FILAS_EXPERTO-1 && j!= COLUMNAS_EXPERTO-1) {
-					if(casillas[i][j-1].esMina())
-						flag++;
-					if(casillas[i-1][j-1].esMina())
-						flag++;
-					if(casillas[i+1][j-1].esMina()) 
-						flag++;
-					if(casillas[i][j+1].esMina())
-						flag++;
-					if(casillas[i+1][j+1].esMina())
-						flag++;
-					if(casillas[i-1][j+1].esMina())
-						flag++;
-					if(casillas[i+1][j].esMina())
-						flag++;
-					if(casillas[i-1][j].esMina())
-						flag++;
-				}
-				if(flag==0) {
-					flag=1;
-				}
-		}
-		}
-		return flag++;
+		int count = 0;
+
+        for (int x = -1; x <= 1; ++x) {
+            int xIndex = x + i;
+            if (xIndex < 0 || xIndex >= casillas.length) {
+                continue; //bad coding techniques sorry, also this is for checking if out of bounds.
+            }
+
+            for (int y = -1; y <= 1; ++y) {
+                int yIndex = y + j;
+                if (yIndex < 0 || yIndex >= casillas[0].length) {
+                    continue; //bad coding techniques sorry, also this is for checking if out of bounds.
+                }
+
+                if (x == 0 && y == 0) {
+                    continue; //bad coding techniques sorry, also this is for checking if out of bounds.
+                }
+
+                if (casillas[xIndex][yIndex].esMina()) {
+                    count++;
+                }
+            }
+        }
+        return count;
 	}
-	
 	/**
 	 * M�todo que se encarga de generar aleatoriomente las minas
 	 */
 	public void generarMinas() {
 		int minesPlaced = 0;
 	    Random random = new Random();
-	    
-		if(nivel==PRINCIPIANTE) {
-		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(FILAS_PRINCIPIANTE);
-		      int y = random.nextInt(COLUMNAS_PRINCIPIANTE);
-		      Casilla ca = new Casilla(100);
-		      if(casillas[y][x].esMina()!=true){
-		        casillas[y][x]=ca;
+	    while(minesPlaced < cantidadMinas) {
+	    	int x = random.nextInt(casillas.length);
+	    	int y = random.nextInt(casillas[0].length);
+	    	Casilla ca = new Casilla(100);
+	    	if(!casillas[x][y].esMina()){
+	    		casillas[x][y]=ca;
 		        minesPlaced ++;
-		    }
-		    }
-		}else if(nivel==INTERMEDIO) {
-		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(COLUMNAS_INTERMEDIO);
-		      int y = random.nextInt(FILAS_INTERMEDIO);
-		      Casilla ca = new Casilla(100);
-		      if(casillas[y][x].esMina()!=true){
-		        casillas[y][x]=ca;
-		        minesPlaced ++;
-		      }
-		    }
-		}else if(nivel==EXPERTO){
-		    while(minesPlaced < cantidadMinas) {
-		      int x = random.nextInt(COLUMNAS_EXPERTO);
-		      int y = random.nextInt(FILAS_EXPERTO);
-		      Casilla ca = new Casilla(100);
-		      if(!casillas[y][x].esMina()){
-		        casillas[y][x]=ca;
-		        minesPlaced ++;
-		      }
-		    }
-		}
-		
+	    	}
+	    }
 	}
 
 
@@ -389,9 +313,9 @@ public class Buscaminas {
 		boolean stop=false;
 		for (int i=0;i<casillas.length && stop==false;i++) {
 			for(int j=0;j<casillas[i].length&&stop==false;j++) {
-				if(!casillas[i][j].esMina() && casillas[i][j].darSeleccionada()!=true ) {
+				if(!casillas[i][j].esMina() && !casillas[i][j].darSeleccionada() ) {
 					casillas[i][j].destapar();
-					nhull=" "+ casillas[i][j].darValor()+" "+"La fila es: "+i+" la columna es: "+j+" ";
+					nhull="La fila es: "+i+" la columna es: "+j+" ";
 					stop=true;
 				}else {
 					nhull="no hay pistas para dar";
