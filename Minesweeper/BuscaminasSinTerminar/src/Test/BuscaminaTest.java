@@ -15,10 +15,7 @@ public class BuscaminaTest {
 	
 	//sceneries
 	public void setupScenery1() throws NivelNoExtisteException {
-		 Random r =new Random();
-		 int randomize = r.nextInt(2);
-		 randomize+=1;
-		 buscaminas = new Buscaminas(randomize);
+		 buscaminas = new Buscaminas(3);
 		 buscaminas.inicializarCasillasLibres();
 	}
 	public void setupScenery2() throws NivelNoExtisteException {
@@ -66,7 +63,6 @@ public class BuscaminaTest {
 				fail(e.getMessage());
 			}
 	}
-	
 	@Test
 	public void testConstructor() {
 		try {
