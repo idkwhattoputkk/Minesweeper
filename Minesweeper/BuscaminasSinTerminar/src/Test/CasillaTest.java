@@ -19,19 +19,6 @@ public class CasillaTest {
 
 	
 	//Testing cases
-	
-	@Test
-	public void esMinaTest() {
-		setupScenery1();
-		assertFalse(casillas.esMina());
-	}
-
-	@Test
-	public void esMinaTest2() {
-		setupScenery2();
-		assertFalse(!casillas.esMina());
-	}
-
 	@Test
 	public void mostrarValorCasillasTest() {
 		setupScenery2();
