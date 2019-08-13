@@ -1,7 +1,5 @@
 # MineSweeper
 # INTEGRANTS
-Emmanuel umaña
+Emmanuel umaña - A00351911
 
-and
-
-nobody else
+#APO2-2.pdf == requerimientos funcionales 
